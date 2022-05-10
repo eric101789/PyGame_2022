@@ -5,7 +5,7 @@ from gobject import GameObject
 
 # 飛彈類別
 class MyMissile(GameObject):
-    # 建構式
+    # 初始化
     def __init__(self, playground, xy, sensitivity=1):
         GameObject.__init__(self, playground)
         __parent_path = Path(__file__).parents[1]
@@ -20,7 +20,6 @@ class MyMissile(GameObject):
         self._moveScale = 0.7 * sensitivity
         self.to_the_top()   # 設定移動方向
 
-    # 只會往上，override parent's method
     def update(self):
         self._y += self._changeY
         if self._y < self._objectBound[2]:

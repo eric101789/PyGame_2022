@@ -39,6 +39,21 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_a:  # 'a', 'A', 左移
+                player.to_the_left()
+            if event.key == pygame.K_d:
+                player.to_the_right()
+            if event.key == pygame.K_s:
+                player.to_the_bottom()
+            if event.key == pygame.K_w:
+                player.to_the_top()
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_a or event.key == pygame.K_d:
+                player.stop_x()
+            if event.key == pygame.K_s or event.key == pygame.K_w:
+                player.stop_y()
 
     screen.blit(background, (0, 0))  # 更新背景圖片
     player.update()  # 更新player狀態

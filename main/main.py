@@ -1,5 +1,6 @@
 import pygame
 from pathlib import Path
+from player import Player
 
 # 初始化pygame系統
 pygame.init()
@@ -25,9 +26,13 @@ background = pygame.Surface(screen.get_size())
 background.fill((50, 50, 50))  # 畫布圍鐵黑色(三個參數為RGB)
 background = background.convert()  # 改變pixel format，加快顯示速度
 
+fps = 120  # 更新頻率，包含畫面更新與事件更新
+movingScale = 600 / fps  # 大約 600 pixel / second
+
+player = Player(playground=playground, sensitivity=movingScale)
+
 running = True
-fps = 120
-clock = pygame.time.Clock()
+clock = pygame.time.Clock()  # create an object to help track time
 
 while running:
     # 從pygame事件佇列中，一項一項的檢查
@@ -35,7 +40,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    screen.blit(background, (0, 0))  # 更新背景圖片
+    player.update()  # 更新player狀態
+    screen.blit(player.image, player.xy)  # 添加 player 圖片
     pygame.display.update()  # 更新螢幕狀態
-    dt = clock.tick(fps)
+    dt = clock.tick(fps)  # 每秒更新 fps 次
 
 pygame.quit()  # 關閉繪圖視窗

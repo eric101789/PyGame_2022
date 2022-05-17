@@ -107,6 +107,8 @@ while running:
 
     screen.blit(background, (0, 0))  # 更新背景圖片
 
+    player.collision_detect(Enemies)
+
     Missiles = [item for item in Missiles if item.available]
     for m in Missiles:
         m.update()

@@ -33,8 +33,6 @@ class Explosion(GameObject):
             Explosion.explosion_effect.append(pygame.image.load(icon_path))
             icon_path = __parent_path / 'res' / 'explosion_medium.png'
             Explosion.explosion_effect.append(pygame.image.load(icon_path))
-            icon_path = __parent_path / 'res' / 'explosion_small.png'
-            Explosion.explosion_effect.append(pygame.image.load(icon_path))
 
         self.__image_index = 0
         self._image = Explosion.explosion_effect[self.__image_index]
@@ -44,7 +42,7 @@ class Explosion(GameObject):
         self.__fps_count += 1
         if self.__fps_count > 30:
             self.__image_index += 1
-            if self.__image_index > 5:
+            if self.__image_index > 4:
                 self._available = False
             else:
                 self._image = Explosion.explosion_effect[self.__image_index]

@@ -3,6 +3,7 @@ from pathlib import Path
 from player import Player
 from missile import MyMissile
 from enemy import Enemy
+from explosion import Explosion
 
 # 初始化pygame系統
 pygame.init()
@@ -36,6 +37,7 @@ player = Player(playground=playground, sensitivity=movingScale)
 # 建立物件串列
 Missiles = []
 Enemies = []
+Boom = []
 
 keyCountX = 0  # 用來計算按鍵被按下的次數，X軸
 keyCountY = 0
@@ -43,9 +45,10 @@ keyCountY = 0
 # 建立事件編號
 launchMissile = pygame.USEREVENT + 1
 createEnemy = pygame.USEREVENT + 2
+explosion = pygame.USEREVENT + 3
 
 # 建立敵機，每秒一台
-pygame.time.set_timer(createEnemy, 1000)
+pygame.time.set_timer(createEnemy, 800)
 
 running = True
 clock = pygame.time.Clock()  # create an object to help track time
@@ -111,6 +114,10 @@ while running:
     for m in Missiles:
         m.collision_detect(Enemies)
 
+    for e in Enemies:
+        if e.collided:
+            Boom.append(Explosion(e.center))
+
     Missiles = [item for item in Missiles if item.available]
     for m in Missiles:
         m.update()
@@ -123,6 +130,12 @@ while running:
 
     player.update()  # 更新player狀態
     screen.blit(player.image, player.xy)  # 添加 player 圖片
+    # 爆炸效果在player之上
+    Boom = [item for item in Boom if item.available]
+    for e in Boom:
+        e.update()
+        screen.blit(e.image, e.xy)
+
     pygame.display.update()  # 更新螢幕狀態
     dt = clock.tick(fps)  # 每秒更新 fps 次
 

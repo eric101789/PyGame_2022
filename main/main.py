@@ -91,6 +91,9 @@ while running:
                 Missiles.append(MyMissile(playground, (m_x, m_y), movingScale))  # 若未指定參數，須按照宣告順序
                 pygame.time.set_timer(launchMissile, 200)  # 之後，每400 ms發射一組
 
+            if event.key == pygame.K_ESCAPE:
+                running = False  # 按ESC退出遊戲
+
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
                 if keyCountX == 1:

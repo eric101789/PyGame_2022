@@ -17,6 +17,7 @@ class Player(GameObject):
         self._image = pygame.image.load(self.__player_path)
         self._center = self._x + self._image.get_rect().w / 2, self._y + self._image.get_rect().h / 2
         self._radius = 0.3 * math.hypot(self._image.get_rect().w, self._image.get_rect().h)  # 碰撞半徑
+        self._hp = 100  # 玩家HP
         if xy is None:
             self._x = (self._playground[0] - self._image.get_rect().w) / 2
             self._y = 3 * self._playground[1] / 4
@@ -40,6 +41,12 @@ class Player(GameObject):
             if self._collided_(m):
                 self._hp -= 10
                 self._collided = True
+                if self._hp <= 0:
+                    self._collided = True
+                    self._available = False
+
                 m.hp = -1
                 m.collided = True
                 m.available = False
+
+

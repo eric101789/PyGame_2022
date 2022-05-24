@@ -59,6 +59,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        if not player.available:
+            print("You are eliminated!!")
+            running = False
+
         if event.type == launchMissile:
             m_x = player.xy[0] - 10
             m_y = player.xy[1]
@@ -91,8 +95,8 @@ while running:
                 Missiles.append(MyMissile(playground, (m_x, m_y), movingScale))  # 若未指定參數，須按照宣告順序
                 pygame.time.set_timer(launchMissile, 200)  # 之後，每400 ms發射一組
 
-            if event.key == pygame.K_ESCAPE:
-                running = False  # 按ESC退出遊戲
+            if event.key == pygame.K_ESCAPE:  # 按ESC退出遊戲
+                running = False
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:

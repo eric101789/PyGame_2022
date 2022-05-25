@@ -26,7 +26,8 @@ pygame.display.set_caption('1942偽')
 icon = pygame.image.load(icon_path)  # 載入圖示
 pygame.display.set_icon(icon)
 background = pygame.Surface(screen.get_size())
-background.fill((50, 50, 50))  # 畫布圍鐵黑色(三個參數為RGB)
+# background.fill((50, 50, 50))  # 畫布圍鐵黑色(三個參數為RGB)
+background.fill((176, 224, 230))
 background = background.convert()  # 改變pixel format，加快顯示速度
 
 fps = 120  # 更新頻率，包含畫面更新與事件更新

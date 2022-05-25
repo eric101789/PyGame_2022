@@ -17,7 +17,8 @@ class Player(GameObject):
         self._image = pygame.image.load(self.__player_path)
         self._center = self._x + self._image.get_rect().w / 2, self._y + self._image.get_rect().h / 2
         self._radius = 0.3 * math.hypot(self._image.get_rect().w, self._image.get_rect().h)  # 碰撞半徑
-        self._hp = 100  # 玩家HP
+        # self._hp = 100  # 玩家HP
+        self._hp = 10
         if xy is None:
             self._x = (self._playground[0] - self._image.get_rect().w) / 2
             self._y = 3 * self._playground[1] / 4

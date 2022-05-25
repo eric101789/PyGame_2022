@@ -30,8 +30,10 @@ class Explosion(GameObject):
             Explosion.explosion_effect.append(pygame.image.load(icon_path))
             icon_path = __parent_path / 'res' / 'explosion_large.png'
             Explosion.explosion_effect.append(pygame.image.load(icon_path))
-            Explosion.explosion_effect.append(pygame.image.load(icon_path))
+            # Explosion.explosion_effect.append(pygame.image.load(icon_path))
             icon_path = __parent_path / 'res' / 'explosion_medium.png'
+            Explosion.explosion_effect.append(pygame.image.load(icon_path))
+            icon_path = __parent_path / 'res' / 'explosion_small.png'
             Explosion.explosion_effect.append(pygame.image.load(icon_path))
 
         self.__image_index = 0

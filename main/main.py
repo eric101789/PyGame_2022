@@ -27,7 +27,7 @@ icon = pygame.image.load(icon_path)  # 載入圖示
 pygame.display.set_icon(icon)
 background = pygame.Surface(screen.get_size())
 # background.fill((50, 50, 50))  # 畫布圍鐵黑色(三個參數為RGB)
-background.fill((176, 224, 230))
+background.fill((176, 224, 230))  # 天藍色
 background = background.convert()  # 改變pixel format，加快顯示速度
 
 fps = 120  # 更新頻率，包含畫面更新與事件更新
@@ -48,7 +48,7 @@ launchMissile = pygame.USEREVENT + 1
 createEnemy = pygame.USEREVENT + 2
 explosion = pygame.USEREVENT + 3
 
-# 建立敵機，每秒一台
+# 建立敵機，每0.8秒一台
 pygame.time.set_timer(createEnemy, 800)
 
 running = True
@@ -138,6 +138,7 @@ while running:
 
     player.update()  # 更新player狀態
     screen.blit(player.image, player.xy)  # 添加 player 圖片
+
     # 爆炸效果在player之上
     Boom = [item for item in Boom if item.available]
     for e in Boom:

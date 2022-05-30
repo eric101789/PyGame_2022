@@ -97,7 +97,8 @@ while running:
                 pygame.time.set_timer(launchMissile, 200)  # 之後，每400 ms發射一組
 
             if event.key == pygame.K_ESCAPE:  # 按ESC退出遊戲
-                running = False
+                # running = False
+                pygame.quit()
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:

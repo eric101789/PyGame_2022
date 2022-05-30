@@ -98,7 +98,7 @@ class GameObject:
     def update(self):
         self._x += self._changeX
         self._y += self._changeY
-        if self._hp < 0:
+        if self._hp <= 0:
             self._collided = True
             self._available = False
         if self._x > self._objectBound[1]:
